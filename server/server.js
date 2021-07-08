@@ -1,6 +1,7 @@
 const express = require('express');
 const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
+const {path} = require('path');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -23,6 +24,16 @@ server.applyMiddleware({app});
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+//serve up static assets from client side build folder if node environment is in production
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
+
+//wildcard get route, respond with react front end code if a server route used is not defined
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+})
 
 db.once('open', () => {
   app.listen(PORT, () => {
