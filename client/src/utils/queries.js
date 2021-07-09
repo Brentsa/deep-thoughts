@@ -17,3 +17,42 @@ export const QUERY_THOUGHTS = gql`
         }
     }
 `;
+
+export const QUERY_THOUGHT = gql`
+    query thought($id: ID!){
+        thought(_id: $id){
+            _id
+            thoughtText
+            createdAt
+            username
+            reactionCount
+            reactions{
+                _id
+                reactionBody
+                username
+                createdAt
+            }
+        }
+    }
+`;
+
+export const QUERY_USER = gql`
+    query user($username: String!){
+        user(username: $username){
+            _id
+            username
+            email
+            thoughts{
+                _id
+                thoughtText
+                createdAt
+                reactionCount
+            }
+            friendCount
+            friends{
+                _id
+                username
+            }
+        }
+    }
+`;
