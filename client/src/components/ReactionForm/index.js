@@ -6,7 +6,7 @@ function ReactionForm({thoughtId}){
 
     const [reactionBody, setReactionBody] = useState('');
     const [characterCount, setCharacterCount] = useState(0);
-    
+
     const [addReaction, {error}] = useMutation(ADD_REACTION);
 
     function handleChange(event){
