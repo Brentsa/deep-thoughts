@@ -56,3 +56,45 @@ export const QUERY_USER = gql`
         }
     }
 `;
+
+export const QUERY_ME = gql`
+    query{
+        me{
+            _id
+            username
+            email
+            friendCount
+            thoughts{
+                _id
+                thoughtText
+                createdAt
+                reactionCount
+                reactions{
+                    _id
+                    reactionBody
+                    username
+                    createdAt
+                }
+            }
+            friends{
+                _id
+                username
+            }
+        }
+    } 
+`;
+
+export const QUERY_ME_BASIC = gql`
+    query{
+        me{
+            _id
+            username
+            email
+            friendCount
+            friends{
+                _id
+                username
+            }
+        }
+    }
+`;
