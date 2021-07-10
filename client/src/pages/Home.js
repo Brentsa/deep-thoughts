@@ -13,7 +13,6 @@ const Home = () => {
 
   //optional chaining - if data exists, store it the thoughts variable, otherwise save an empty string;
   const thoughts = data?.thoughts || [];
-  console.log(thoughts);
 
   //check if the user is logged in, will be used for conditional rendering
   const loggedIn = Auth.loggedIn();
